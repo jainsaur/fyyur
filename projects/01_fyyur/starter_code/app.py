@@ -435,8 +435,10 @@ def create_shows():
 def create_show_submission():
 
   try:
-    venue = db.session.query(Venue).filter(Venue.id == request.form['venue_id']).first()
-    artist = db.session.query(Artist).filter(Artist.id == request.form['artist_id']).first()
+    venue_id = int(request.form['venue_id'])
+    venue = db.session.query(Venue).filter(Venue.id == venue_id).first()
+    artist_id = int(request.form['artist_id'])
+    artist = db.session.query(Artist).filter(Artist.id == artist_id).first()
     
     new_show = Show(start_time = request.form['start_time'])
     new_show.venue = venue
@@ -445,7 +447,8 @@ def create_show_submission():
     db.session.add(new_show)
     db.session.commit()
     flash('Show was successfully listed!')
-  except:
+  except Exception as e:
+    print(e)
     db.session.rollback()
     flash('Error occurred while listing the show', 'error')
   
