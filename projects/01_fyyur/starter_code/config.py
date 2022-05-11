@@ -13,3 +13,5 @@ DEBUG = True
 SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@localhost/fyyurdb'
 
 SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+SQLALCHEMY_ECHO = True
